@@ -1,0 +1,4 @@
+def checkio(text):
+    
+    unique = sorted({c for c in text.lower() if c.isalpha()})
+    return max(unique, key=text.lower().count)
