@@ -1,0 +1,80 @@
+def checkio(data):
+    num = str(data)
+    lis = []
+    for digit in num:
+        lis.append(int(digit)) 
+    number = list(reversed(lis)) 
+    RomanNumeral = []
+    try: 
+        if number[3]:  
+            for i in xrange(number[3]):
+                RomanNumeral.append('M')
+    except IndexError:
+        pass 
+    try:  
+        if number[2]: 
+            if number[2] == 5:
+                RomanNumeral.append('D')
+            elif number[2] ==4:
+                RomanNumeral.append('CD')
+            elif number[2]== 9: 
+                RomanNumeral.append('CM')
+            elif number[2] > 5: 
+                RomanNumeral.append('D')
+                for i in xrange(number[2]%5):
+                    RomanNumeral.append('C')
+            elif number[2] < 5:
+                for i in xrange(number[2]):
+                    RomanNumeral.append('C')
+    except IndexError:
+        pass             
+        
+    try: 
+        if number[1]:
+            if number[1] == 5:
+                RomanNumeral.append('L')
+            elif number[1] ==4:
+                RomanNumeral.append('XL')
+            elif number[1]== 9: 
+                RomanNumeral.append('XC')
+            elif number[1] > 5: 
+                RomanNumeral.append('L')
+                for i in xrange(number[1]%5):
+                    RomanNumeral.append('X')
+            elif number[1] < 5:
+                for i in xrange(number[1]):
+                    RomanNumeral.append('X')
+    except IndexError:
+        pass   
+    
+    try: 
+        if number[0]:
+            if number[0] == 5:
+                RomanNumeral.append('V')
+            elif number[0] ==4:
+                RomanNumeral.append('IV')
+            elif number[0]== 9: 
+                RomanNumeral.append('IX')
+            elif number[0] > 5: 
+                RomanNumeral.append('V')
+                for i in xrange(number[0]%5):
+                    RomanNumeral.append('I')
+            elif number[0] < 5:
+                for i in xrange(number[0]):
+                    RomanNumeral.append('I')
+    except IndexError:
+        pass  
+        
+        
+        
+    
+    
+    return ''.join(RomanNumeral)
+        
+    
+if __name__ == '__main__':
+    #These "asserts" using only for self-checking and not necessary for auto-testing
+    assert checkio(6) == 'VI', '6'
+    assert checkio(76) == 'LXXVI', '76'
+    assert checkio(499) == 'CDXCIX', '499'
+    assert checkio(3888) == 'MMMDCCCLXXXVIII', '3888'
